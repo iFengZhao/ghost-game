@@ -34,3 +34,36 @@ class Trie:
                 return False
             tree = tree[char]
         return True
+
+
+# Implement a Player class
+class Player:
+
+    def __init__(self, name):
+        self.name = name
+        self.__strike_count = 0
+        self.entry = None
+
+    def get_strike_count(self):
+        return self.__strike_count
+
+    def set_strike_count(self, new_value: int) -> None:
+        self.__strike_count = new_value
+
+    def enter_letter(self) -> None:
+        """
+        Prompt the player to enter a letter.
+        """
+        print(f"\n\n{self.name}, it's your turn.\n")
+        self.entry = input("Please enter a single letter:\n")
+        while not self.correct_entry(self.entry):
+            print("\n\nThat's not a correct entry! \n\n") # add raise error statements later
+            self.entry = input("Please enter a single letter:\n")
+
+    @staticmethod
+    def correct_entry(entry: str) -> bool:
+        """
+        Examine whether the entry is a single letter.
+        """
+        if len(entry) == 1 and entry.isalpha():
+            return True
