@@ -57,7 +57,7 @@ class Player:
         print(f"\n\n{self.name}, it's your turn.\n")
         self.entry = input("Please enter a single letter:\n")
         while not self.correct_entry(self.entry):
-            print("\n\nThat's not a correct entry! \n\n") # add raise error statements later
+            self.error_messages(self.entry)
             self.entry = input("Please enter a single letter:\n")
 
     @staticmethod
@@ -67,3 +67,14 @@ class Player:
         """
         if len(entry) == 1 and entry.isalpha():
             return True
+        return False
+
+    @staticmethod
+    def error_messages(entry: str) -> None:
+        """
+        Show error messages.
+        """
+        if len(entry) > 1:
+            print("\nYou entered more than one character.")
+        if not entry.isalpha():
+            print("\nThat's not a letter")
