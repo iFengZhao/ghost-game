@@ -2,7 +2,6 @@
 
 if __name__ == '__main__':
 
-    import random
     from ghost import Trie, Player, Ghost
 
     # Create Trie object with data from text file
