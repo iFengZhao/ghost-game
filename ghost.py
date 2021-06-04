@@ -92,11 +92,15 @@ class Ghost:
         self.player_list = player_list
         self.current_player = None
         self.dict = word_trie
+        self.round_number = 1
 
     def play(self) -> None:
         """
         Main method in the class.
         """
+
+        print("***************************************************\n"
+              f"                    Round{self.round_number}")
         prefix = ""
 
         self.starts_first()
@@ -129,6 +133,8 @@ class Ghost:
         print("***************************************************\n"
               f"{self.current_player.name}, you lost! Game is over!\n"
               "***************************************************\n")
+
+        self.round_number += 1
 
     def starts_first(self) -> None:
         """
