@@ -19,6 +19,11 @@ if __name__ == '__main__':
           "Make sure you understand the rules before playing.\n"
           "***************************************************\n")
 
+    read_rules = input("Hit 'y' to read rules of the game. \n"
+                       "Hit any other keys to skip the rules.\n")
+
+    Ghost.show_rules(read_rules)
+
     name1 = input("Player1, please enter your name when you are ready.\n")
     player1 = Player(name1)
     player_list.append(player1)
@@ -47,3 +52,5 @@ if __name__ == '__main__':
     print("***************************************************\n"
               "Thanks for playing Ghost. See you next time.\n"
           "***************************************************\n")
+
+

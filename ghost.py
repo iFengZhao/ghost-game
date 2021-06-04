@@ -169,3 +169,25 @@ class Ghost:
             print("\nIt's a real word with more than 3 letters.")
             return True
         return False
+
+    @staticmethod
+    def show_rules(read_rules):
+        if read_rules.lower() == 'y':
+            print("***************************************************\n"
+                                  "The rules of GHOST:\n\n"
+                  "- GHOST is a two-player word game\n"
+                  "- Player 1 starts by entering a letter\n"
+                  "- Player 2 adds a letter to the first letter\n"
+                  "- The players continue taking turns adding letters\n"
+                  "- Each new letter must continue to spell\n"
+                  "   the beginning of a real word\n"
+                  "- If a player adds an invalid letter to the word\n"
+                  "   this player gets a strike and need to repeat\n"
+                  "   their turn\n"
+                  "- Once a player gets 3 strikes, or completes a valid\n"
+                  "   word longer than 3 letters, that player loses and\n"
+                  "   the other player wins\n"
+                  "***************************************************")
+        else:
+            print("***************************************************\n"
+                  "The game starts now")
