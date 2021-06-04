@@ -20,19 +20,15 @@ if __name__ == '__main__':
     for word in word_list:
         word_trie.insert(word)
 
-    player_list = []
-
     # Start game and initialize players.
-    print("***************************************************\n"
-          "            Welcome to the Ghost game!\n"
-          "Make sure you understand the rules before playing.\n"
-          "***************************************************\n")
+    Ghost.welcome()
 
     read_rules = input("Hit 'y' to read rules of the game. \n"
                        "Hit any other keys to skip the rules.\n")
 
     Ghost.show_rules(read_rules)
 
+    player_list = []
     name1 = input("Player1, please enter your name when you are ready.\n")
     player1 = Player(name1)
     player_list.append(player1)

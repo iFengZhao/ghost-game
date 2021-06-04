@@ -180,6 +180,13 @@ class Ghost:
         return False
 
     @staticmethod
+    def welcome() -> None:
+        print("***************************************************\n"
+              "            Welcome to the Ghost game!\n"
+              "Make sure you understand the rules before playing.\n"
+              "***************************************************\n")
+
+    @staticmethod
     def replay(next_round: str, player1: Player, player2: Player, game) -> None:
         while next_round.lower() == 'y':
             player1.set_strike_count(0)
