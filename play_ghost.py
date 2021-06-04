@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+"""
+Instantiate objects from classes Trie, Player, and Ghost.
+Start the game.
+"""
+__author__ = "Feng Zhao"
+__version__ = "1.0.1"
+__email__ = "fengzhao@gatech.edu"
+
 
 if __name__ == '__main__':
 
@@ -29,7 +38,7 @@ if __name__ == '__main__':
     player_list.append(player1)
 
     name2 = input("\nPlayer2, please enter your name when you are ready.\n")
-    # make sure the name is not duplicate
+    # Make sure the name is not duplicate
     while name2 == name1:
         print("\nSorry, the name you entered has been taken.\n")
         name2 = input("\nPlayer2, please enter your name when you are ready.\n")

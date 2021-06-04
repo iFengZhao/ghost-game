@@ -1,3 +1,11 @@
+#!/usr/bin/env python
+"""
+Implement classes： Trie, Player, and Ghost.
+"""
+__author__ = "Feng Zhao"
+__version__ = "1.0.1"
+__email__ = "fengzhao@gatech.edu"
+
 import random
 
 
@@ -101,6 +109,7 @@ class Ghost:
 
         print("***************************************************\n"
               f"                    Round{self.round_number}")
+
         prefix = ""
 
         self.starts_first()
@@ -176,7 +185,8 @@ class Ghost:
             player1.set_strike_count(0)
             player2.set_strike_count(0)
             game.play()
-            next_round = input("Hit 'y' to play next round; any other keys to exit.\n")
+            next_round = input("Hit 'y' to play next round; \n"
+                               "any other keys to exit.\n")
 
         print("***************************************************\n"
                   "Thanks for playing Ghost. See you next time.\n"
@@ -186,7 +196,7 @@ class Ghost:
     def show_rules(read_rules: str) -> None:
         if read_rules.lower() == 'y':
             print("***************************************************\n"
-                                  "The rules of GHOST:\n\n"
+                  "                The rules of GHOST:\n\n"
                   "- GHOST is a two-player word game\n"
                   "- Player 1 starts by entering a letter\n"
                   "- Player 2 adds a letter to the first letter\n"
@@ -202,4 +212,4 @@ class Ghost:
                   "***************************************************")
         else:
             print("***************************************************\n"
-                  "The game starts now")
+                  "                The game starts now")
