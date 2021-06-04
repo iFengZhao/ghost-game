@@ -43,7 +43,7 @@ class Trie:
 # Implement a Player class
 class Player:
 
-    def __init__(self, name):
+    def __init__(self, name: str):
         self.name = name
         self.__strike_count = 0
         self.entry = None
@@ -58,7 +58,8 @@ class Player:
         """
         Prompt the player to enter a letter.
         """
-        print(f"\n\n{self.name}, it's your turn.\n")
+        print("\n***************************************************\n"
+              f"{self.name}, it's your turn.")
         self.entry = input("Please enter a single letter:\n")
         while not self.correct_entry(self.entry):
             self.error_messages(self.entry)
@@ -87,10 +88,10 @@ class Player:
 # Implement a Ghost class for the game
 class Ghost:
 
-    def __init__(self, player_list, word_trie):
+    def __init__(self, player_list: list, word_trie: Trie):
         self.player_list = player_list
         self.current_player = None
-        self.word_trie = word_trie
+        self.dict = word_trie
 
     def play(self) -> None:
         """
@@ -104,6 +105,7 @@ class Ghost:
             self.current_player.enter_letter()
 
             prefix = (prefix + self.current_player.entry).lower()
+            print(f"The current prefix is {prefix}-.")
 
             strike_count = self.current_player.get_strike_count()
             while strike_count < 3:
@@ -111,7 +113,8 @@ class Ghost:
                 if not self.valid_move(prefix):
                     strike_count += 1
                     self.current_player.set_strike_count(strike_count)
-                    print("\nSorry, the letter you entered does not form the beginning of a valid word. Try again!\n")
+                    print("\nThe letter entered will not form the beginning of a\n"
+                          "valid word.Try again!\n")
                     print(f"You've got {strike_count} strike(s)!")
                     if strike_count < 3:
                         self.current_player.enter_letter()
@@ -123,8 +126,9 @@ class Ghost:
             else:
                 break
 
-        print(f"\n{self.current_player.name}, you lost!")
-        print("Game over!")
+        print("***************************************************\n"
+              f"{self.current_player.name}, you lost! Game is over!\n"
+              "***************************************************\n")
 
     def starts_first(self) -> None:
         """
@@ -141,20 +145,21 @@ class Ghost:
         else:
             self.current_player = self.player_list[0]
 
-    def valid_move(self, prefix) -> bool:
+    def valid_move(self, prefix: str) -> bool:
         """
         Returns if the letter entered will form the beginning of a valid word.
         """
-        if self.word_trie.is_prefix(prefix):
+        if self.dict.is_prefix(prefix):
             return True
         return False
 
-    def game_over(self, player, prefix) -> bool:
+    def game_over(self, player: Player, prefix: str) -> bool:
         """
         Returns if the game is over.
         """
         if player.get_strike_count() == 3:
             return True
-        elif len(prefix) > 3 and self.word_trie.is_word(prefix):
+        elif len(prefix) > 3 and self.dict.is_word(prefix):
+            print("\nIt's a real word with more than 3 letters.")
             return True
         return False
