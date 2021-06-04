@@ -171,7 +171,19 @@ class Ghost:
         return False
 
     @staticmethod
-    def show_rules(read_rules):
+    def replay(next_round: str, player1: Player, player2: Player, game) -> None:
+        while next_round.lower() == 'y':
+            player1.set_strike_count(0)
+            player2.set_strike_count(0)
+            game.play()
+            next_round = input("Hit 'y' to play next round; any other keys to exit.\n")
+
+        print("***************************************************\n"
+                  "Thanks for playing Ghost. See you next time.\n"
+              "***************************************************\n")
+
+    @staticmethod
+    def show_rules(read_rules: str) -> None:
         if read_rules.lower() == 'y':
             print("***************************************************\n"
                                   "The rules of GHOST:\n\n"
