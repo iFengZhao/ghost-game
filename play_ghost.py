@@ -1,5 +1,4 @@
 
-
 if __name__ == '__main__':
 
     from ghost import Trie, Player, Ghost
@@ -36,6 +35,7 @@ if __name__ == '__main__':
     game = Ghost(player_list, word_trie)
     game.play()
 
+    # Ask whether players would like play next round
     next_round = input("Hit 'y' to play next round; any other keys to exit.\n")
 
     while next_round.lower() == 'y':
