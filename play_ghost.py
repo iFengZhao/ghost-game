@@ -14,6 +14,7 @@ if __name__ == '__main__':
 
     player_list = []
 
+    # Start game and initialize players.
     print("Welcome to the Ghost game!\n"
           "Make sure you understand the rules before playing.\n")
 
@@ -22,11 +23,13 @@ if __name__ == '__main__':
     player_list.append(player1)
 
     name2 = input("\nPlayer2, please enter your name when you are ready.\n")
+    # make sure the name is not duplicate
     while name2 == name1:
         print("\nSorry, the name you entered has been taken.\n")
         name2 = input("\nPlayer2, please enter your name when you are ready.\n")
     player2 = Player(name2)
     player_list.append(player2)
 
+    # Instantiate a Ghost game object
     game = Ghost(player_list, word_trie)
     game.play()
