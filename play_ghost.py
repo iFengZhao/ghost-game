@@ -15,8 +15,10 @@ if __name__ == '__main__':
     player_list = []
 
     # Start game and initialize players.
-    print("Welcome to the Ghost game!\n"
-          "Make sure you understand the rules before playing.\n")
+    print("***************************************************\n"
+          "            Welcome to the Ghost game!\n"
+          "Make sure you understand the rules before playing.\n"
+          "***************************************************\n")
 
     name1 = input("Player1, please enter your name when you are ready.\n")
     player1 = Player(name1)
@@ -33,3 +35,20 @@ if __name__ == '__main__':
     # Instantiate a Ghost game object
     game = Ghost(player_list, word_trie)
     game.play()
+
+    next_round = input("Enter 'y' to play next round; enter 'n' to exit.\n")
+
+    while next_round.lower() not in ['y','n']:
+        print("\nThat's not a valid input.")
+        next_round = input("Enter 'y' to play next round; enter 'n' to exit.\n")
+
+    while next_round.lower() == 'y':
+        player1.set_strike_count(0)
+        player2.set_strike_count(0)
+        game.play()
+        next_round = input("Enter 'y' to play next round; enter 'n' to exit.\n")
+
+    if next_round.lower() == 'n':
+        print("***************************************************\n"
+                  "Thanks for playing Ghost. See you next time.\n"
+              "***************************************************\n")
