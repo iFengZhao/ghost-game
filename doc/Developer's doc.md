@@ -15,9 +15,10 @@ Three essential files are required to successfully play the game.
 Since this is a basic and very straigtforward project, I only wrote three classes for the programming implementation. I will explain below why I designed the game this way.
 ### Trie Class
 Upon reading the game instruction file, I realized this would be a perfect use case for the data structure **Trie**. 
-In the game, the system need to constantly two types of checking and validation:
-- whether the input will form a valid word
-- whether the input will form the begining of a valid word  
+Three methods were implemented in the Trie Class. In the game, the system need to constantly two types of checking and validation:
+- `insert`: used to buit a trie object with a word or word list
+- `is_word`: decide whether the input will form a valid word
+- `is_prefix`: decide whether the input will form the begining of a valid word  
 
 Whereas we need to creat a Trie object using the word list, the time complxity is not that bad.  
 In the worst senario, the run time for creating a Trie would be ***O(mn)*** where m is the length of the longest key in the trie, and n, the total number of keys in the trie.  
@@ -25,7 +26,9 @@ Once the Word Trie was implemented, it will greatly improve the time efficiency 
 The time complexity of searching from a trie would be ***O(an)***, where a is the length of the word and n is the number of total words.
 ### Player Class
 The Player Class was designed to have three attributes: 
-player's name, player's strike count, and the letter a player entered.
+- `name`: player's name
+- `__strike_count`:player's strike count
+- `entry`:the letter a player entered.
 In terms of the class method, only the enter_letter method is the essiential and it was used to prompt the palyer to enter a single letter and verify whether the input is allowed. 
 Considering the strike_count is one of the two conditions that one palyer will lose, I made it a private attribute and the system would need to use the getter and setter methods to retrive and change it's value.
 ### Ghost Class
@@ -39,8 +42,12 @@ There are many methods in this class, but the play method is the only essential 
 There are other methods in the class and they are utility functions. You may refer to the docstrings for these functions.
 ## User interaction walkthrough
 Once the play_ghost.py was executed, a Trie object with data from text file will be created. This Trie object will be passed when a Ghost class is instantiated.
-The game starts by showing a welcome message (via the static method `welcome` in the Ghost class)
-
+The game starts by showing a welcome message (via the static method `welcome` in the Ghost class).
+Players will then be asked whether they would like to check the rules (via the static method `show_rules` in the Ghost class).
+players will then be asked to enter their name once ready (two names need to be different). And these two names will be used to instantiate two Player objects, which will then be used to instantiate a Ghost object.
+The main method in the Ghost class `play` will be executed, and players will be prompted to enter qualified letters.
+Certain message will be shown to the player to indicate whethe they have made a correct entry, a valid move, their strike counts, and the game result.
+Once a round of game is ended. Players will be asked whether they would like to continue to play. Otherwise, the program will exit with a thank you message.
 ## Known issues
 Currently none.
 ## Next steps
