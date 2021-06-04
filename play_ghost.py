@@ -36,19 +36,14 @@ if __name__ == '__main__':
     game = Ghost(player_list, word_trie)
     game.play()
 
-    next_round = input("Enter 'y' to play next round; enter 'n' to exit.\n")
-
-    while next_round.lower() not in ['y','n']:
-        print("\nThat's not a valid input.")
-        next_round = input("Enter 'y' to play next round; enter 'n' to exit.\n")
+    next_round = input("Hit 'y' to play next round; any other keys to exit.\n")
 
     while next_round.lower() == 'y':
         player1.set_strike_count(0)
         player2.set_strike_count(0)
         game.play()
-        next_round = input("Enter 'y' to play next round; enter 'n' to exit.\n")
+        next_round = input("Hit 'y' to play next round; any other keys to exit.\n")
 
-    if next_round.lower() == 'n':
-        print("***************************************************\n"
-                  "Thanks for playing Ghost. See you next time.\n"
-              "***************************************************\n")
+    print("***************************************************\n"
+              "Thanks for playing Ghost. See you next time.\n"
+          "***************************************************\n")
