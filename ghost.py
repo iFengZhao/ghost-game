@@ -75,12 +75,12 @@ class Player:
         print("\n***************************************************\n"
               f"{self.name}, it's your turn.")
         self.entry = input("Please enter a single letter:\n")
-        while not self.correct_entry(self.entry):
-            self.error_messages(self.entry)
+        while not self.is_correct_entry(self.entry):
+            self.show_error_messages(self.entry)
             self.entry = input("Please enter a single letter:\n")
 
     @staticmethod
-    def correct_entry(entry: str) -> bool:
+    def is_correct_entry(entry: str) -> bool:
         """
         Examine whether the entry is a single letter.
         """
@@ -89,7 +89,7 @@ class Player:
         return False
 
     @staticmethod
-    def error_messages(entry: str) -> None:
+    def show_error_messages(entry: str) -> None:
         """
         Show error messages.
         """
