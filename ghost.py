@@ -128,6 +128,7 @@ class Ghost:
             print(f"The current prefix is {prefix}-.")
 
             strike_count = self.current_player.get_strike_count()
+
             while strike_count < 3:
 
                 if not self.is_valid_move(prefix):

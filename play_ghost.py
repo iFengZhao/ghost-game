@@ -45,7 +45,7 @@ if __name__ == '__main__':
     game = Ghost(player_list, word_trie)
     game.play()
 
-    # Ask whether players would like play next round
+    # Ask whether players would like to play next round
     next_round = input("Hit 'y' to play next round; any other keys to exit.\n")
     Ghost.replay(next_round, player1, player2, game)
 
