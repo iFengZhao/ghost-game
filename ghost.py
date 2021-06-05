@@ -105,6 +105,7 @@ class Ghost:
     def __init__(self, player_list: list, word_trie: Trie):
         self.player_list = player_list
         self.current_player = None
+        self.next_player = None
         self.trie = word_trie
         self.round_number = 1
 
@@ -118,7 +119,7 @@ class Ghost:
 
         prefix = ""
 
-        self.starts_first()
+        self.draw_starting_player()
 
         while True:
             self.current_player.enter_letter()
@@ -146,25 +147,26 @@ class Ghost:
                 break
 
         print("***************************************************\n"
-              f"{self.current_player.name}, you lost! Game is over!\n"
+              f"{self.current_player.name}, you lost! {self.next_player.name} won the game!\n"
               "***************************************************\n")
 
         self.round_number += 1
 
-    def starts_first(self) -> None:
+    def draw_starting_player(self) -> None:
         """
         Randomly assign a player to enter first.
         """
         self.current_player = random.choice(self.player_list)
+        if self.current_player == self.player_list[0]:
+            self.next_player = self.player_list[1]
+        else:
+            self.next_player = self.player_list[0]
 
     def change_turns(self) -> None:
         """
         Take turns for the players.
         """
-        if self.current_player == self.player_list[0]:
-            self.current_player = self.player_list[1]
-        else:
-            self.current_player = self.player_list[0]
+        self.current_player, self.next_player = self.next_player, self.current_player
 
     def is_valid_move(self, prefix: str) -> bool:
         """
