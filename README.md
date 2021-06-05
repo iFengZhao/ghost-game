@@ -1,4 +1,4 @@
-## Above the project
+## About the project
 
 **GHOST** is a word game where players take turn adding letters to a word. The first to spell a complete word that is greater than 3 letters loses. When adding a letter to the word, you must ensure that you are spelling the beginning of a valid word. The strategy is to corner your opponent into having no choice but to complete the word and lose the game.  
   
