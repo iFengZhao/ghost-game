@@ -11,11 +11,17 @@ import random
 
 # Implement a Trie data structure
 class Trie:
-
+    """
+    Trie is an efficient information reTrieval data structure.
+    Using Trie, search complexities can be brought to optimal limit (key length).
+    """
     def __init__(self):
         self.dict = {}
 
     def insert(self, word: str) -> None:
+        """
+        Insert a word to the trie.
+        """
         tree = self.dict
         for char in word:
             if char not in tree:
@@ -99,7 +105,7 @@ class Ghost:
     def __init__(self, player_list: list, word_trie: Trie):
         self.player_list = player_list
         self.current_player = None
-        self.dict = word_trie
+        self.trie = word_trie
         self.round_number = 1
 
     def play(self) -> None:
@@ -123,7 +129,7 @@ class Ghost:
             strike_count = self.current_player.get_strike_count()
             while strike_count < 3:
 
-                if not self.valid_move(prefix):
+                if not self.is_valid_move(prefix):
                     strike_count += 1
                     self.current_player.set_strike_count(strike_count)
                     print("\nThe letter entered will not form the beginning of a\n"
@@ -134,7 +140,7 @@ class Ghost:
                 else:
                     break
 
-            if not self.game_over(self.current_player, prefix):
+            if not self.is_game_over(self.current_player, prefix):
                 self.change_turns()
             else:
                 break
@@ -160,21 +166,21 @@ class Ghost:
         else:
             self.current_player = self.player_list[0]
 
-    def valid_move(self, prefix: str) -> bool:
+    def is_valid_move(self, prefix: str) -> bool:
         """
         Returns if the letter entered will form the beginning of a valid word.
         """
-        if self.dict.is_prefix(prefix):
+        if self.trie.is_prefix(prefix):
             return True
         return False
 
-    def game_over(self, player: Player, prefix: str) -> bool:
+    def is_game_over(self, player: Player, prefix: str) -> bool:
         """
         Returns if the game is over.
         """
         if player.get_strike_count() == 3:
             return True
-        elif len(prefix) > 3 and self.dict.is_word(prefix):
+        elif len(prefix) > 3 and self.trie.is_word(prefix):
             print("\nIt's a real word with more than 3 letters.")
             return True
         return False
