@@ -147,6 +147,7 @@ class Ghost:
                 break
 
         print("***************************************************\n"
+              "                   **Gave over**\n\n"
               f"{self.current_player.name}, you lost! {self.next_player.name} won the game!\n"
               "***************************************************\n")
 
