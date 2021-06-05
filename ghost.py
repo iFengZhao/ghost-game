@@ -121,36 +121,37 @@ class Ghost:
 
         self.draw_starting_player()
 
-        while True:
+        game_on = True
+        while game_on:
             self.current_player.enter_letter()
+
+            temp_prefix = (prefix + self.current_player.entry).lower()
+
+            strike_count = self.current_player.get_strike_count()
+
+            while not self.is_valid_move(temp_prefix):
+
+                strike_count += 1
+                self.current_player.set_strike_count(strike_count)
+                print("\nThe letter entered will not form the beginning of a\n"
+                      "valid word.Try again!\n")
+                print(f"You've got {strike_count} strike(s)!")
+                if strike_count == 3:
+                    game_on = False
+                    self.show_game_over_message()
+                    break
+                else:
+                    self.current_player.enter_letter()
+                    temp_prefix = (prefix + self.current_player.entry).lower()
 
             prefix = (prefix + self.current_player.entry).lower()
             print(f"The current prefix is {prefix}-.")
 
-            strike_count = self.current_player.get_strike_count()
-
-            while strike_count < 3:
-
-                if not self.is_valid_move(prefix):
-                    strike_count += 1
-                    self.current_player.set_strike_count(strike_count)
-                    print("\nThe letter entered will not form the beginning of a\n"
-                          "valid word.Try again!\n")
-                    print(f"You've got {strike_count} strike(s)!")
-                    if strike_count < 3:
-                        self.current_player.enter_letter()
-                else:
-                    break
-
-            if not self.is_game_over(self.current_player, prefix):
-                self.change_turns()
-            else:
+            if self.is_longer_valid_word(prefix):
+                self.show_game_over_message()
                 break
-
-        print("***************************************************\n"
-              "                   **Gave over**\n\n"
-              f"{self.current_player.name}, you lost! {self.next_player.name} won the game!\n"
-              "***************************************************\n")
+            else:
+                self.change_turns()
 
         self.round_number += 1
 
@@ -178,16 +179,20 @@ class Ghost:
             return True
         return False
 
-    def is_game_over(self, player: Player, prefix: str) -> bool:
+    def is_longer_valid_word(self, prefix: str) -> bool:
         """
         Returns if the game is over.
         """
-        if player.get_strike_count() == 3:
-            return True
-        elif len(prefix) > 3 and self.trie.is_word(prefix):
+        if len(prefix) > 3 and self.trie.is_word(prefix):
             print("\nIt's a real word with more than 3 letters.")
             return True
         return False
+
+    def show_game_over_message(self) -> None:
+        print("***************************************************\n"
+              "                   **Gave over**\n\n"
+              f"{self.current_player.name}, you lost! {self.next_player.name} won the game!\n"
+              "***************************************************\n")
 
     @staticmethod
     def welcome() -> None:
