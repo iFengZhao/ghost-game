@@ -127,10 +127,8 @@ class Ghost:
 
             temp_prefix = (prefix + self.current_player.entry).lower()
 
-            strike_count = self.current_player.get_strike_count()
-
             while not self.is_valid_move(temp_prefix):
-
+                strike_count = self.current_player.get_strike_count()
                 strike_count += 1
                 self.current_player.set_strike_count(strike_count)
                 print("\nThe letter entered will not form the beginning of a\n"
