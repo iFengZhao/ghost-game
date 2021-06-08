@@ -68,6 +68,9 @@ class Player:
     def set_strike_count(self, new_value: int) -> None:
         self.__strike_count = new_value
 
+    def up_strike_count(self) -> None:
+        self.__strike_count += 1
+
     def enter_letter(self) -> None:
         """
         Prompt the player to enter a letter.
@@ -128,11 +131,11 @@ class Ghost:
             temp_prefix = (prefix + self.current_player.entry).lower()
 
             while not self.is_valid_move(temp_prefix):
-                strike_count = self.current_player.get_strike_count()
-                strike_count += 1
-                self.current_player.set_strike_count(strike_count)
+
                 print("\nThe letter entered will not form the beginning of a\n"
                       "valid word.Try again!\n")
+                self.current_player.up_strike_count()
+                strike_count = self.current_player.get_strike_count()
                 print(f"You've got {strike_count} strike(s)!")
                 if strike_count == 3:
                     game_on = False
@@ -143,7 +146,7 @@ class Ghost:
                     temp_prefix = (prefix + self.current_player.entry).lower()
 
             prefix = (prefix + self.current_player.entry).lower()
-            print(f"The current prefix is {prefix}-.")
+            print(f"The current prefix is {prefix.upper()}-. It's a valid move.")
 
             if self.is_longer_valid_word(prefix):
                 self.show_game_over_message()
@@ -182,7 +185,7 @@ class Ghost:
         Returns if the game is over.
         """
         if len(prefix) > 3 and self.trie.is_word(prefix):
-            print("\nIt's a real word with more than 3 letters.")
+            print(f"\n{prefix.upper()} is a real word with more than 3 letters.")
             return True
         return False
 
