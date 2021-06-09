@@ -20,3 +20,5 @@ To play the game, make sure the three files above are in the same directory and 
 Currently none.
 ## Next steps
 Save a record for each round of the game.
+## Note
+This project was first hosted in my Gatech Github account. I moved it to my personal GitHub account to ease sharing.
