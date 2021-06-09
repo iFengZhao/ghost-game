@@ -10,7 +10,7 @@ import random
 
 
 # Implement a Trie data structure
-class Trie:
+class Trie(object):
     """
     Trie is an efficient information reTrieval data structure.
     Using Trie, search complexities can be brought to optimal limit (key length).
@@ -55,7 +55,7 @@ class Trie:
 
 
 # Implement a Player class
-class Player:
+class Player(object):
 
     def __init__(self, name: str):
         self.name = name
@@ -103,7 +103,7 @@ class Player:
 
 
 # Implement a Ghost class for the game
-class Ghost:
+class Ghost(object):
 
     def __init__(self, player_list: list, word_trie: Trie):
         self.player_list = player_list
